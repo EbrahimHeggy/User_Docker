@@ -26,7 +26,4 @@ jobs:
           docker tag app1:latest ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
       
-      - name: Run Docker Compose
-        run: |
-          docker-compose pull app1
-          docker-compose up -d app1
+ 
