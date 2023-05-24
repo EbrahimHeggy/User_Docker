@@ -24,7 +24,8 @@ jobs:
 
 
     - name: Build the Java application
-      run: javac -d ./build ./src/Main.java
+      run: javac -d ./build ./students/src/Main.java
+
 
     - name: Run tests
       run: java -classpath ./build Main
