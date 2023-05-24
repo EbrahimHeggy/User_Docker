@@ -20,6 +20,8 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '18'
+        distribution: 'adopt'
+
 
     - name: Build the Java application
       run: javac -d ./build ./src/*.java
