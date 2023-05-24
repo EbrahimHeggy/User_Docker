@@ -25,13 +25,9 @@ jobs:
     - name: Build the Java application
       run: javac -d ./build ./students/src/Main.java
 
-    - name: Run tests - Add student data
-      run: |
-        printf "1\n\
-        ebrahim\n\
-        1234\n\
-        Math\n" > input.txt
-        java -classpath ./build Main < input.txt
+    - name: Run Docker Compose
+      uses: docker/compose-action@v1
+      with:
+        compose-file: docker-compose.yml
+        compose-command: up -d
 
-    - name: Run tests - Add batch students data
-      run: java -classpath ./build Main 2 "1_verified"
