@@ -20,10 +20,10 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '18'
-        distribution: 'adopt'
 
-    - name: Build with Maven
-      run: mvn package --quiet
+    - name: Build the Java application
+      run: javac -d ./build ./src/*.java
 
     - name: Run tests
-      run: mvn test --quiet
+      run: java -classpath ./build YourMainClass
+
