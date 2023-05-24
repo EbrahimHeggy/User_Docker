@@ -19,9 +19,10 @@ jobs:
  
      - name: Build and push app1 image
        run: |
-            docker build -t app1 ./students
+            docker build -t app1:latest ./students
             docker tag app1 ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
             docker push ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
+            
 
 
      - name: Run Docker Compose
