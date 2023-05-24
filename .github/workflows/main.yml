@@ -15,6 +15,12 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '18'
+        distribution: 'adopt'
 
     - name: Build the Java application
       run: javac -d ./build ./students/src/Main.java
