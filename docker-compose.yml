@@ -14,7 +14,7 @@ services:
   app2:
     image: ebrahimh7/app2
     depends_on:
-      - app1
+      - ebrahimh7/app1
     ports:
       - 8082:8080
     volumes:
