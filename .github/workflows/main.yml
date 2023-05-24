@@ -29,10 +29,10 @@ jobs:
 
     - name: Run tests - Add student data
       run: |
-        echo "1" | 
-        echo "ebrahim" | 
-        echo "1234" | 
-        echo "Math" | java -classpath ./build Main
+        printf "1\n\
+        ebrahim\n\
+        1234\n\
+        Math\n" | java -classpath ./build Main
 
     - name: Run tests - Add batch students data
       run: java -classpath ./build Main 2 "1_verified"
