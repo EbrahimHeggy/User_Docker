@@ -27,6 +27,9 @@ jobs:
       run: javac -d ./build ./students/src/Main.java
 
 
-    - name: Run tests
-      run: java -classpath ./build Main
+    - name: Run tests - Add student data
+      run: java -classpath ./build Main 1 "Ebrahim" 1234 "Math"
+
+    - name: Run tests - Add batch students data
+      run: java -classpath ./build Main 2 "1_verified"
 
