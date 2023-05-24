@@ -1,32 +1,32 @@
-
-name: push img
+name: Push Docker Image
 
 on:
   push:
     branches:
       - main
 
-
 jobs:
-  build-and-test:
+  build-and-push:
     runs-on: windows-latest
+    
     steps:
-
-     - name: Log in to Docker Hub
-       uses: docker/login-action@v1
-       with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
- 
-     - name: Build and push app1 image
-       run: |
-            cd students
-            docker build -t app1 -f Dockerfile .
-            docker tag app1:latest ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
-            docker push ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
-
-            
-     - name: Run Docker Compose
-       run: |
-        docker-compose pull app1
-        docker-compose up -d app1
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      
+      - name: Build and Push Docker Image
+        run: |
+          cd students
+          docker build -t app1 -f Dockerfile .
+          docker tag app1:latest ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
+      
+      - name: Run Docker Compose
+        run: |
+          docker-compose pull app1
+          docker-compose up -d app1
