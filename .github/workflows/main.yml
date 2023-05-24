@@ -26,6 +26,7 @@ jobs:
       run: javac -d ./build ./students/src/Main.java
 
     - name: Run Docker Compose
-      run: docker-compose up -d
+      run:  docker-compose pull
+            docker-compose up -d
 
 
