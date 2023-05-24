@@ -33,9 +33,13 @@ jobs:
 
     - name: Push images to Docker Hub
       run: |
-        docker-compose config --services | xargs -I {} docker pull {}
-        docker-compose config --services | xargs -I {} docker tag {}:latest ${{ secrets.DOCKERHUB_USERNAME }}/{}
-        docker-compose config --services | xargs -I {} docker push ${{ secrets.DOCKERHUB_USERNAME }}/{}
+        services=$(docker-compose config --services)
+        for service in $services; do
+          image=$service:latest
+          docker pull $image
+          docker tag $image ${{ secrets.DOCKERHUB_USERNAME }}/$service:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/$service:latest
+        done
 
     - name: Run Docker Compose
       run: |
