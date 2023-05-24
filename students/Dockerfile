@@ -3,3 +3,5 @@ COPY . /
 WORKDIR /
 RUN javac Main.java
 CMD ["java", "Main"]
+
+
