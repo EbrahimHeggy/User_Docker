@@ -29,9 +29,9 @@ jobs:
 
     - name: Run tests - Add student data
       run: |
-        echo "1" | java -classpath ./build Main
-        echo "ebrahim" | java -classpath ./build Main
-        echo "1234" | java -classpath ./build Main
+        echo "1" | 
+        echo "ebrahim" | 
+        echo "1234" | 
         echo "Math" | java -classpath ./build Main
 
     - name: Run tests - Add batch students data
