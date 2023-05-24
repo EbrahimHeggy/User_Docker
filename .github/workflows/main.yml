@@ -30,21 +30,14 @@ jobs:
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
-    - name: Push images to Docker Hub
+ 
+    - name: Build and push app1 image
       run: |
-        $services = $(docker-compose config --services)
-        foreach ($service in $services) {
-          $image = "${service}:latest"
-          docker-compose pull $service
-          docker tag $image "${{ secrets.DOCKERHUB_USERNAME }}/${service}:latest"
-          docker push "${{ secrets.DOCKERHUB_USERNAME }}/${service}:latest"
-        }
+        docker build -t app1 ./students/
+        docker tag app1 ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/app1:latest
 
     - name: Run Docker Compose
       run: |
-        $services = "app1", "app2"  # Update with your service names
-        foreach ($service in $services) {
-          docker-compose pull $service
-        }
-        docker-compose up -d
+        docker-compose pull app1
+        docker-compose up -d app1
